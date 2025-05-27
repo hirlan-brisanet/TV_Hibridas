@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TV Vídeo Brisanet</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    video {
+      max-width: 100vw;
+      max-height: 100vh;
+      object-fit: contain;
+      background: black;
+    }
+
+    /* Oculta a barra de controle padrão, mas permite tela cheia via botão custom */
+    .hide-controls::-webkit-media-controls {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <video id="tv-video" autoplay loop muted controls playsinline>
+    <source src="https://www.dropbox.com/scl/fi/jcus937b4agvzxe1fe4zk/tv.mp4?rlkey=a8ojxp2ssadpeyg8o8dswlvpn&st=zfzkbget&raw=1" type="video/mp4">
+    Seu navegador não suporta vídeo.
+  </video>
+
+  <script>
+    const video = document.getElementById("tv-video");
+
+    // Tenta manter o vídeo rodando se for pausado por alguma política do navegador
+    setInterval(() => {
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    }, 5000);
+  </script>
+</body>
+</html>
